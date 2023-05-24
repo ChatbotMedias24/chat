@@ -44,20 +44,28 @@ response_container = st.container()
 textcontainer = st.container()
 
 
+query = st.text_input("Posez votre question au chatbot :")
 with textcontainer:
-    query = st.text_input("Query: ", key="input")
-    if query:
-        with st.spinner("typing..."):
+    st.sidebar.subheader("Suggestions:")
+    selected_question = st.sidebar.selectbox("choisir :", ["","Résumé du rapport","Comment le rapport propose-t-il de renforcer l'effectivité de ces droits ?", " Quel est le cadre référentiel des droits et libertés mentionné dans le rapport ?", "Quel est le nombre de plainte reçues en 2022", "Sur quels éléments repose l'approche reflexive thinking proposée par le Conseil ?","En quoi consiste l'approche reflexive thinking proposée par le Conseil ?"])
+    if selected_question:
+        question = selected_question
+        if question:
+         with st.spinner("En train de taper..."):
             conversation_string = get_conversation_string()
-            # st.code(conversation_string)
-            refined_query = query_refiner(conversation_string, query)
-            st.subheader("Refined Query:")
-            st.write(refined_query)
+            refined_query = query_refiner(conversation_string, question)
             context = find_match(refined_query)
-            # print(context)  
+            response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{question}")
+         st.session_state.requests.append(question)
+         st.session_state.responses.append(response)
+    elif query:
+        with st.spinner("En train de taper..."):
+            conversation_string = get_conversation_string()
+            refined_query = query_refiner(conversation_string, query)
+            context = find_match(refined_query)
             response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{query}")
         st.session_state.requests.append(query)
-        st.session_state.responses.append(response) 
+        st.session_state.responses.append(response)
 with response_container:
     if st.session_state['responses']:
 
