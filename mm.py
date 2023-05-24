@@ -11,10 +11,10 @@ import streamlit as st
 from streamlit_chat import message
 from utils import *
 
-st.subheader("Chatbot with Langchain, ChatGPT, Pinecone, and Streamlit")
+st.subheader("Chatbot - Rapport annuel sur la situation des droits de l’Homme au Maroc 2022")
 
 if 'responses' not in st.session_state:
-    st.session_state['responses'] = ["How can I assist you?"]
+    st.session_state['responses'] = ["Quelle information souhaitez-vous obtenir du rapport annuel sur la situation des droits de l'homme au Maroc 2022 ??"]
 
 if 'requests' not in st.session_state:
     st.session_state['requests'] = []
