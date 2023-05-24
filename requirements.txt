@@ -2,3 +2,4 @@ pinecone-client
 openai
 streamlit
 langchain
+streamlit-chat
