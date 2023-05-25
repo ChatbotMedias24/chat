@@ -4,3 +4,5 @@ streamlit
 langchain
 streamlit-chat
 sentence_transformers
+langdetect
+translate
