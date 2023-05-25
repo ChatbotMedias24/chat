@@ -10,6 +10,8 @@ from langchain.prompts import (
 import streamlit as st
 from streamlit_chat import message
 from utils import *
+from langdetect import detect
+from translate import Translator
 
 st.subheader("Chatbot - Rapport annuel sur la situation des droits de l’Homme au Maroc 2022")
 
@@ -43,6 +45,7 @@ response_container = st.container()
 # container for text box
 textcontainer = st.container()
 
+translator = Translator(to_lang="fr")
 
 query = st.text_input("Posez votre question au chatbot :")
 with textcontainer:
@@ -56,6 +59,8 @@ with textcontainer:
             refined_query = query_refiner(conversation_string, question)
             context = find_match(refined_query)
             response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{question}")
+            if detect(response)=='en':
+                response = translator.translate(response)
          st.session_state.requests.append(question)
          st.session_state.responses.append(response)
     elif query:
@@ -64,6 +69,8 @@ with textcontainer:
             refined_query = query_refiner(conversation_string, query)
             context = find_match(refined_query)
             response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{query}")
+            if detect(response)=='en':
+                response = translator.translate(response)
         st.session_state.requests.append(query)
         st.session_state.responses.append(response)
 with response_container:
