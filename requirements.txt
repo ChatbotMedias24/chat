@@ -6,3 +6,4 @@ streamlit-chat
 sentence_transformers
 langdetect
 translate
+
