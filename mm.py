@@ -49,6 +49,9 @@ translator = Translator(to_lang="fr")
 
 query = st.text_input("Posez votre question au chatbot :")
 with textcontainer:
+    logo_path = "medias24.png"
+# Afficher l'image dans la barre latérale
+    st.sidebar.image(logo_path, width=200) 
     st.sidebar.subheader("Suggestions:")
     selected_question = st.sidebar.selectbox("Choisir :", ["","Résumé du rapport","Comment le rapport propose-t-il de renforcer l'effectivité de ces droits ?", " Quel est le cadre référentiel des droits et libertés mentionné dans le rapport ?", "Quel est le nombre de plaintes et requétes reçues en 2022", "Sur quels éléments repose l'approche reflexive thinking proposée par le Conseil ?","En quoi consiste l'approche reflexive thinking proposée par le Conseil ?"])
     if selected_question:
