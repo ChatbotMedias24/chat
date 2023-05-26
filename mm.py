@@ -53,7 +53,7 @@ with textcontainer:
 # Afficher l'image dans la barre latérale
     st.sidebar.image(logo_path, width=200) 
     st.sidebar.subheader("Suggestions:")
-    selected_question = st.sidebar.selectbox("Choisir :", ["","Résumé du rapport","Comment le rapport propose-t-il de renforcer l'effectivité de ces droits ?", " Quel est le cadre référentiel des droits et libertés mentionné dans le rapport ?", "Quel est le nombre de plaintes et requétes reçues en 2022", "Sur quels éléments repose l'approche reflexive thinking proposée par le Conseil ?","En quoi consiste l'approche reflexive thinking proposée par le Conseil ?"])
+    selected_question = st.sidebar.selectbox("Choisir :", ["","Pouvez vous me donner le résumé du rapport ?"," Quels sont les principaux défis auxquels le Maroc est confronté en matière de droits socio-économiques ?", "quel est le nombre de plainte reçues en 2022", "Sur quels éléments repose l'approche reflexive thinking proposée par le Conseil ?","En quoi consiste l'approche reflexive thinking proposée par le Conseil ?"])
     if selected_question:
         question = selected_question
         if question:
