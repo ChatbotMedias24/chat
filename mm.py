@@ -55,8 +55,6 @@ with textcontainer:
         question = selected_question
         if question:
          with st.spinner("En train de taper..."):
-            conversation_string = get_conversation_string()
-            refined_query = query_refiner(conversation_string, question)
             context = find_match(refined_query)
             response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{question}")
             if detect(response)=='en':
@@ -65,8 +63,6 @@ with textcontainer:
          st.session_state.responses.append(response)
     elif query:
         with st.spinner("En train de taper..."):
-            conversation_string = get_conversation_string()
-            refined_query = query_refiner(conversation_string, query)
             context = find_match(refined_query)
             response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{query}")
             if detect(response)=='en':
