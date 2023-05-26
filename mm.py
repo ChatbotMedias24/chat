@@ -58,7 +58,7 @@ with textcontainer:
         question = selected_question
         if question:
          with st.spinner("En train de taper..."):
-            context = find_match(refined_query)
+            context = find_match(question)
             response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{question}")
             if detect(response)=='en':
                 response = translator.translate(response)
@@ -66,7 +66,7 @@ with textcontainer:
          st.session_state.responses.append(response)
     elif query:
         with st.spinner("En train de taper..."):
-            context = find_match(refined_query)
+            context = find_match(query)
             response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{query}")
             if detect(response)=='en':
                 response = translator.translate(response)
