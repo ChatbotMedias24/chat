@@ -21,7 +21,7 @@ translator = Translator(to_lang="fr")
 st.subheader("Chatbot - Rapport annuel sur la situation des droits de l’Homme au Maroc 2022")
 
 if 'responses' not in st.session_state:
-    st.session_state['responses'] = ["Quelle information souhaitez-vous obtenir du rapport annuel sur la situation des droits de l'homme au Maroc 2022 ??"]
+    st.session_state['responses'] = ["Quelle information souhaitez-vous obtenir du rapport annuel sur la situation des droits de l'homme au Maroc 2022 ?"]
 
 if 'requests' not in st.session_state:
     st.session_state['requests'] = []
