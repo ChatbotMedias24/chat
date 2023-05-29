@@ -13,10 +13,15 @@ from utils import *
 from langdetect import detect
 from translate import Translator
 
+translator = Translator(to_lang="fr")
+
+# Créer une colonne pour l'image
+# Définir le style CSS pour déplacer l'image vers la gauche
+
 st.subheader("Chatbot - Rapport annuel sur la situation des droits de l’Homme au Maroc 2022")
 
 if 'responses' not in st.session_state:
-    st.session_state['responses'] = ["Quelle information souhaitez-vous obtenir du rapport annuel sur la situation des droits de l'homme au Maroc 2022 ?"]
+    st.session_state['responses'] = ["Quelle information souhaitez-vous obtenir du rapport annuel sur la situation des droits de l'homme au Maroc 2022 ??"]
 
 if 'requests' not in st.session_state:
     st.session_state['requests'] = []
@@ -37,22 +42,18 @@ prompt_template = ChatPromptTemplate.from_messages([system_msg_template, Message
 
 conversation = ConversationChain(memory=st.session_state.buffer_memory, prompt=prompt_template, llm=llm, verbose=True)
 
-
-
-
 # container for chat history
 response_container = st.container()
 # container for text box
 textcontainer = st.container()
-
-translator = Translator(to_lang="fr")
-
 query = st.text_input("Posez votre question au chatbot :")
 with textcontainer:
     logo_path = "medias24.png"
+
 # Afficher l'image dans la barre latérale
     st.sidebar.image(logo_path, width=200) 
     st.sidebar.subheader("Suggestions:")
+    
     questions = [
     "Pouvez vous me donner le résumé du rapport ?",
     "Quels sont les principaux défis auxquels le Maroc est confronté en matière de droits socio-économiques ?",
@@ -60,12 +61,15 @@ with textcontainer:
     "Sur quels éléments repose l'approche reflexive thinking proposée par le Conseil ?",
     "En quoi consiste l'approche reflexive thinking proposée par le Conseil ?"
 ]
+
     selected_questions = []
+
     for question in questions:
-         if st.sidebar.checkbox(question):
-                selected_questions.append(question)
-    if selected_question:
-        question = selected_question
+     if st.sidebar.checkbox(question):
+        selected_questions.append(question)  
+    if selected_questions:
+        for selected_question in selected_questions:
+          question = selected_question
         if question:
          with st.spinner("En train de taper..."):
             context = find_match(question)
@@ -76,12 +80,14 @@ with textcontainer:
          st.session_state.responses.append(response)
     elif query:
         with st.spinner("En train de taper..."):
+
             context = find_match(query)
             response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{query}")
             if detect(response)=='en':
                 response = translator.translate(response)
         st.session_state.requests.append(query)
         st.session_state.responses.append(response)
+
 with response_container:
     if st.session_state['responses']:
 
