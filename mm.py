@@ -62,8 +62,8 @@ with textcontainer:
 ]
     selected_questions = []
     for question in questions:
-     if st.sidebar.checkbox(question):
-        selected_questions.append(question) 
+         if st.sidebar.checkbox(question):
+                selected_questions.append(question)
     if selected_question:
         question = selected_question
         if question:
