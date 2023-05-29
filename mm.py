@@ -53,6 +53,8 @@ with textcontainer:
 # Afficher l'image dans la barre latérale
     st.sidebar.image(logo_path, width=200) 
     st.sidebar.subheader("Suggestions:")
+    st.sidebar.markdown("##### choisir:")
+
     
     questions = [
     "Pouvez vous me donner le résumé du rapport ?",
