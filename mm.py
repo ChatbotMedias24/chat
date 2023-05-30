@@ -18,10 +18,10 @@ translator = Translator(to_lang="fr")
 # Créer une colonne pour l'image
 # Définir le style CSS pour déplacer l'image vers la gauche
 
-st.subheader("Chatbot - Rapport annuel sur la situation des droits de l’Homme au Maroc 2022")
+st.subheader("Chatbot - Édition marocaine rapport 2022")
 
 if 'responses' not in st.session_state:
-    st.session_state['responses'] = ["Quelle information souhaitez-vous obtenir du rapport annuel sur la situation des droits de l'homme au Maroc 2022 ?"]
+    st.session_state['responses'] = ["Quelle information souhaitez-vous obtenir du rapport ?"]
 
 if 'requests' not in st.session_state:
     st.session_state['requests'] = []
@@ -54,14 +54,13 @@ with textcontainer:
     st.sidebar.image(logo_path, width=200) 
     st.sidebar.subheader("Suggestions:")
     st.sidebar.markdown("##### choisir:")
-
-    
     questions = [
-    "Pouvez vous me donner le résumé du rapport ?",
-    "Quels sont les principaux défis auxquels le Maroc est confronté en matière de droits socio-économiques ?",
-    "Quel est le nombre de plaintes reçues en 2022 ?",
-    "Sur quels éléments repose l'approche reflexive thinking proposée par le Conseil ?",
-    "En quoi consiste l'approche reflexive thinking proposée par le Conseil ?"
+    "L'idée générale du rapport ?", 
+    "Quels sont les principaux chiffres et tendances de l'édition marocaine en 2022 ?",
+    "Comment se fait la collecte et l'aquisition des publication marocaine ?",
+    "Quel est la répartition de la publications des livres selon les langues ?",
+    "Comment se répartit géographiquement l'activité éditoriale au maroc ?"
+    
 ]
 
     selected_questions = []
@@ -89,7 +88,8 @@ with textcontainer:
                 response = translator.translate(response)
         st.session_state.requests.append(query)
         st.session_state.responses.append(response)
-
+        
+ 
 with response_container:
     if st.session_state['responses']:
 
