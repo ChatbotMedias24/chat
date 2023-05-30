@@ -6,7 +6,7 @@ openai.api_key = st.secrets["open_api_key"]
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 pinecone.init(api_key=st.secrets["pincone_key"], environment=st.secrets["environement"])
-index = pinecone.Index('testi')
+index = pinecone.Index('testchat')
 
 def find_match(input):
     input_em = model.encode(input).tolist()
